@@ -28,6 +28,7 @@
 		"@types/react-dom": "^18.0.11",
 		"@typescript-eslint/eslint-plugin": "^5.55.0",
 		"@typescript-eslint/parser": "^5.55.0",
+		"autoprefixer": "^10.4.14",
 		"copy-webpack-plugin": "^11.0.0",
 		"css-loader": "^6.7.3",
 		"css-minimizer-webpack-plugin": "^4.2.2",
@@ -60,12 +61,22 @@
 	"eslintConfig": {
 		"overrides": [
 			{
-				"files": ["**/*.ts", "**/*.tsx"],
-				"extends": ["./.eslintrc-ts.js"]
+				"files": [
+					"**/*.ts",
+					"**/*.tsx"
+				],
+				"extends": [
+					"./.eslintrc-ts.js"
+				]
 			},
 			{
-				"files": ["**/*.js", "**/*.jsx"],
-				"extends": ["./.eslintrc-js.js"]
+				"files": [
+					"**/*.js",
+					"**/*.jsx"
+				],
+				"extends": [
+					"./.eslintrc-js.js"
+				]
 			}
 		]
 	}
