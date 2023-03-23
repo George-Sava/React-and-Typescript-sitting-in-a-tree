@@ -12,3 +12,28 @@ body {
     justify-content: center;
     height: 100vh;
 }
+
+
+
+input {
+    font: inherit;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #ffffff;
+    margin-bottom: 0.3rem;
+    width: 100%;
+}
+
+button {
+    padding: 0.4rem;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+h3 {
+    text-align: center;
+}
