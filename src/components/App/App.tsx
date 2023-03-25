@@ -1,84 +1,58 @@
 import { addBudgetItem, getBudgetItems, getTotalBudget } from 'helpers';
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { BudgetNode } from 'types';
 import './App.css';
+import { AddIncome } from '../AddIncome/AddIncome';
+import { AddExpense } from '../AddExpense/AddExpense';
 
 export function App() {
-	const [budget, setBudget] = useState<BudgetNode | null>(null);
-
-	const incomeRef = useRef<HTMLInputElement>(null);
-	const expenseName = useRef<HTMLInputElement>(null);
-	const expenseAmount = useRef<HTMLInputElement>(null);
+	const [state, setState] = useState<BudgetNode | null>(null);
 
 	const budgetItems = useMemo(
-		() => getBudgetItems(budget).filter(node => node.item.name !== 'Income'),
-		[budget]
+		() => getBudgetItems(state).filter(node => node.item.name !== 'Income'),
+		[state]
 	);
+
+	function handleAddIncome(income: number) {
+		setState(prevBudget =>
+			addBudgetItem(prevBudget, {
+				name: 'Income',
+				amount: Number(income)
+			})
+		);
+	}
+
+	function handleAddExpense(name: string, amount: number) {
+		if (name && amount) {
+			setState(prevBudget => addBudgetItem(prevBudget, { name, amount: Number(amount) }));
+		}
+	}
+
+	console.log('state', state);
 
 	return (
 		<div className="flex-container">
-			<h2>Total budget is: {getTotalBudget(budget)}</h2>
-
-			<div className="inner-container">
-				<div>
-					<h3>Insert monthly income:</h3>
-					<input type="number" ref={incomeRef} />
-					<div className="btn-container">
-						<button
-							onClick={() => {
-								const income = incomeRef.current?.value;
-								if (income) {
-									incomeRef.current.value = '';
-									setBudget(prevBudget =>
-										addBudgetItem(prevBudget, {
-											name: 'Income',
-											amount: Number(income)
-										})
-									);
-								}
-							}}
-						>
-							Submit
-						</button>
-					</div>
-
-					<h3>Insert expense:</h3>
-					<div className="expense-container">
-						<label htmlFor="expense-name">Name:</label>
-						<input type="text" ref={expenseName} />
-					</div>
-					<div className="expense-container">
-						<label htmlFor="expense-amount">Amount:</label>
-						<input type="number" ref={expenseAmount} />
-					</div>
-					<div className="btn-container">
-						<button
-							onClick={() => {
-								const name = expenseName.current?.value;
-								const amount = expenseAmount.current?.value;
-								if (name && amount) {
-									expenseName.current.value = '';
-									expenseAmount.current.value = '';
-									setBudget(prevBudget =>
-										addBudgetItem(prevBudget, { name, amount: Number(amount) })
-									);
-								}
-							}}
-						>
-							Submit
-						</button>
-					</div>
+			{state && (
+				<div className="box container">
+					<h3>Total budget:</h3>
+					<p className="total">{getTotalBudget(state)} parale</p>
 				</div>
-				<div>
-					<h3>Expenses items:</h3>
-					<ul>
-						{budgetItems.map((node, i) => (
-							<li key={`${node.item.name}-${i}`}>
-								{node.item.name}: {node.item.amount}
-							</li>
-						))}
-					</ul>
-				</div>
+			)}
+
+			<AddIncome handleAddIncome={handleAddIncome} className="box container" />
+
+			<AddExpense handleAddExpense={handleAddExpense} className="box container" />
+
+			<div className="box container">
+				<h3>Expenses</h3>
+				<ul>
+					{budgetItems.map((node, i) => (
+						<li key={`${node.item.name}-${i}`} className="expense-item">
+							<span className="item-name">{node.item.name}</span>: {node.item.amount}{' '}
+							parale
+						</li>
+					))}
+				</ul>
 			</div>
 		</div>
 	);
