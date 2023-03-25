@@ -1,3 +1,4 @@
+import './App.css';
 interface Props {
 	text?: string;
 }
