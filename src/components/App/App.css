@@ -35,8 +35,10 @@ input {
 }
 
 .box {
-    width: 50%;
+    width: 40%;
     margin: auto;
+
+    min-width: 380px;
 }
 
 button {
@@ -108,12 +110,13 @@ h3 {
 
 .expense-item {
     font-size: 1.1rem;
-    margin-left: 2rem;
 }
 
 ul {
     list-style: none;
     margin-top: 1rem;
+
+    text-align: center;
 }
 
 .item-name {

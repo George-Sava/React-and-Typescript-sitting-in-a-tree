@@ -7,5 +7,3 @@ export interface BudgetNode {
 	left?: BudgetNode;
 	right?: BudgetNode;
 }
-
-export type BudgetNodeVisitor<T> = (node: BudgetNode) => T;
