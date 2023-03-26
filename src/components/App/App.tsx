@@ -136,6 +136,7 @@ export function App() {
 
 	return (
 		<div className="flex-container">
+			<h1>Budget App</h1>
 			{state && (
 				<div className="box container">
 					<h3>Total budget:</h3>
