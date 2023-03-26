@@ -7,6 +7,8 @@
 body {
     font-family: sans-serif;
     background: #6f4949;
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/765/436/1018/money-screensaver-wallpaper-preview.jpg');
+    background-blend-mode: soft-light;
 }
 
 .flex-container {
@@ -121,4 +123,13 @@ ul {
 
 .item-name {
     font-weight: bold;
+}
+
+.view-inputs {
+    margin-bottom: 1rem;
+}
+
+h1 {
+    color: #fff;
+    margin-bottom: 1rem;
 }
